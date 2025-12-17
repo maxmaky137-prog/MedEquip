@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { DataService } from '../services/dataService';
 import { CheckRecord, MaintenanceRecord, Asset, User } from '../types';
-import { FileText, Download, CheckCircle, AlertTriangle, Printer, FileSpreadsheet } from 'lucide-react';
+import { FileText, CheckCircle, AlertTriangle, Printer, FileSpreadsheet } from 'lucide-react';
 
 interface ComplianceProps {
     currentUser: User | null;

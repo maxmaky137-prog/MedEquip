@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { MaintenanceRecord, MaintenanceType, Asset, User, AssetStatus } from '../types';
 import { DataService } from '../services/dataService';
-import { Wrench, Clock, CheckCircle2, AlertOctagon, X, Save, FileText, Bell, ClipboardList, Coins, TrendingUp, Bot, Send, Printer, FileSpreadsheet, Download } from 'lucide-react';
+import { Wrench, Clock, CheckCircle2, AlertOctagon, X, FileText, Bell, ClipboardList, Coins, TrendingUp, Bot, Send, Printer, FileSpreadsheet } from 'lucide-react';
 import { GoogleGenAI } from "@google/genai";
 
 interface MaintenanceViewProps {
@@ -161,17 +161,18 @@ const MaintenanceView: React.FC<MaintenanceViewProps> = ({ currentUser }) => {
     setAiResponse('');
 
     try {
-        const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' }); 
-        const model = ai.models.getGenerativeModel({ 
+        const ai = new GoogleGenAI({ apiKey: process.env.API_KEY }); 
+        
+        // Correct Usage: ai.models.generateContent (Stateless)
+        const response = await ai.models.generateContent({
             model: 'gemini-2.5-flash',
-            systemInstruction: 'คุณคือผู้ช่วยช่างเทคนิคเครื่องมือแพทย์ (Biomedical Engineer Assistant) มีหน้าที่ให้คำแนะนำเบื้องต้นในการแก้ไขปัญหาเครื่องมือแพทย์ (Troubleshooting) ตอบสั้นกระชับ เป็นข้อๆ และเน้นความปลอดภัย'
-        });
-
-        const result = await model.generateContent({
-            contents: aiPrompt
+            contents: aiPrompt,
+            config: {
+                systemInstruction: 'คุณคือผู้ช่วยช่างเทคนิคเครื่องมือแพทย์ (Biomedical Engineer Assistant) มีหน้าที่ให้คำแนะนำเบื้องต้นในการแก้ไขปัญหาเครื่องมือแพทย์ (Troubleshooting) ตอบสั้นกระชับ เป็นข้อๆ และเน้นความปลอดภัย'
+            }
         });
         
-        setAiResponse(result.text || 'ไม่สามารถประมวลผลได้ในขณะนี้');
+        setAiResponse(response.text || 'ไม่สามารถประมวลผลได้ในขณะนี้');
     } catch (error) {
         console.error(error);
         setAiResponse('เกิดข้อผิดพลาดในการเชื่อมต่อ AI: กรุณาตรวจสอบ API Key');

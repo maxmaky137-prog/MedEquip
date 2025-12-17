@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { Asset, CheckRecord, User } from '../types';
 import { DataService } from '../services/dataService';
-import { ClipboardCheck, Check, X, AlertTriangle, Calendar, Activity, Zap, Monitor, Sparkles, Building2, Send } from 'lucide-react';
+import { ClipboardCheck, Check, X, Calendar, Activity, Zap, Monitor, Sparkles, Send } from 'lucide-react';
 
 interface DailyCheckProps {
     currentUser: User | null;

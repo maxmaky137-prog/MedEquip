@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { Asset, AssetStatus, AppSettings } from '../types';
 import { DataService } from '../services/dataService';
-import { Search, Filter, Plus, MoreVertical, X, Save, FileText, ExternalLink, HardDrive, Settings as SettingsIcon, Download, Printer, FileSpreadsheet, ClipboardList, CheckSquare, XSquare, RefreshCw, Pencil, Trash2 } from 'lucide-react';
+import { Search, Filter, Plus, X, Save, FileText, HardDrive, Settings as SettingsIcon, Download, Printer, FileSpreadsheet, ClipboardList, CheckSquare, XSquare, RefreshCw, Pencil, Trash2 } from 'lucide-react';
 
 interface AssetListProps {
   settings?: AppSettings;
